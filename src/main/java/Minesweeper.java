@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Mineseeper
+public class Minesweeper
 {
     public static final int SIZE = 5;
 
-    public static final int CELLS_PER_MINE = 6;
+    private static final int CELLS_PER_MINE = 6;
 
     private int mines = 0;
 
@@ -19,14 +19,14 @@ public class Mineseeper
     private long startGameMillis = 0;
     private Restartable restartableApplication;
 
-    public Mineseeper(Restartable restartableApplication)
+    public Minesweeper(Restartable restartableApplication)
     {
         this.restartableApplication = restartableApplication;
         init();
         System.out.println("total mines: " + mines);
     }
 
-    public void init()
+    private void init()
     {
         cellMineEventHandler = new CellMineEventHandler(this);
         startGameMillis = System.currentTimeMillis();
@@ -69,7 +69,6 @@ public class Mineseeper
             for(int y = 0; y < SIZE; y++) {
                 Cell currentCell = cells[x][y];
                 currentCell.setNeighborsCells(getNeighbors(currentCell));
-
             }
         }
     }

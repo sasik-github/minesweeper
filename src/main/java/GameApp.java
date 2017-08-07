@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.Arrays;
@@ -18,12 +17,12 @@ import static java.util.stream.Collectors.toList;
 public class GameApp extends Application implements Restartable
 {
 
-    public static final String TITLE = "Minesweeper";
+    private static final String TITLE = "Minesweeper";
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;
-    public static final int ADD_TO_HEIGHT = 20;
+    private static final int ADD_TO_HEIGHT = 20;
 
-    private Mineseeper mineseeper;
+    private Minesweeper minesweeper;
     private Pane cellsPane;
 
     public static void main(String[] args)
@@ -62,10 +61,10 @@ public class GameApp extends Application implements Restartable
 
     public void restart()
     {
-        mineseeper = new Mineseeper(this);
+        minesweeper = new Minesweeper(this);
         cellsPane.getChildren().clear();
         List<Cell> cellList = Arrays
-                .stream(mineseeper.getCells())
+                .stream(minesweeper.getCells())
                 .flatMap(Arrays::stream)
                 .collect(toList());
         cellsPane.getChildren().addAll(cellList);

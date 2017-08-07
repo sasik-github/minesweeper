@@ -6,8 +6,8 @@ import java.util.List;
 public class Cell extends Button
 {
 
-    public static final int HEIGHT = GameApp.HEIGHT / Mineseeper.SIZE;
-    public static final int WIDTH = GameApp.WIDTH / Mineseeper.SIZE;
+    private static final int HEIGHT = GameApp.HEIGHT / Minesweeper.SIZE;
+    private static final int WIDTH = GameApp.WIDTH / Minesweeper.SIZE;
 
     private int x;
     private int y;
@@ -71,7 +71,7 @@ public class Cell extends Button
         showNeighbors();
     }
 
-    public void incrementNeighborsMineCount()
+    private void incrementNeighborsMineCount()
     {
         neighborsMineCount++;
     }

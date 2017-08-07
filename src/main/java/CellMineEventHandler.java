@@ -4,13 +4,13 @@ import javafx.scene.input.MouseEvent;
 
 public class CellMineEventHandler implements EventHandler<MouseEvent>
 {
-    private Mineseeper mineseeper;
+    private Minesweeper minesweeper;
 
     private int defusedMinesCount = 0;
 
-    public CellMineEventHandler(Mineseeper mineseeper)
+    public CellMineEventHandler(Minesweeper minesweeper)
     {
-        this.mineseeper = mineseeper;
+        this.minesweeper = minesweeper;
     }
 
     public void handle(MouseEvent event)
@@ -25,7 +25,7 @@ public class CellMineEventHandler implements EventHandler<MouseEvent>
 
         if (isAllBombDefused()) {
             System.out.println("You win");
-            mineseeper.winGame();
+            minesweeper.winGame();
         }
 
 
@@ -40,13 +40,13 @@ public class CellMineEventHandler implements EventHandler<MouseEvent>
     {
         cell.open();
         if (cell.hasMine() && !cell.isDefused()) {
-            mineseeper.gameOver();
+            minesweeper.gameOver();
         }
     }
 
     private boolean isAllBombDefused()
     {
-        return mineseeper.getMines() == defusedMinesCount;
+        return minesweeper.getMines() == defusedMinesCount;
     }
 
 }
