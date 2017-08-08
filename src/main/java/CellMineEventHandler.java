@@ -8,6 +8,8 @@ public class CellMineEventHandler implements EventHandler<MouseEvent>
 
     private int defusedMinesCount = 0;
 
+    private int openedCount = 0;
+
     public CellMineEventHandler(Minesweeper minesweeper)
     {
         this.minesweeper = minesweeper;
@@ -38,7 +40,7 @@ public class CellMineEventHandler implements EventHandler<MouseEvent>
 
     private void onPrimaryButton(Cell cell)
     {
-        cell.open();
+         openedCount += cell.open();
         if (cell.hasMine() && !cell.isDefused()) {
             minesweeper.gameOver();
         }
@@ -46,7 +48,14 @@ public class CellMineEventHandler implements EventHandler<MouseEvent>
 
     private boolean isAllBombDefused()
     {
-        return minesweeper.getMines() == defusedMinesCount;
+
+        System.out.println(
+                "SIZE " + Minesweeper.SIZE * Minesweeper.SIZE +
+                        " Opened + defused " + (defusedMinesCount + openedCount)
+        );
+
+        return Minesweeper.SIZE * Minesweeper.SIZE == defusedMinesCount + openedCount;
+//        return minesweeper.getMines() == defusedMinesCount;
     }
 
 }

@@ -40,22 +40,29 @@ public class Cell extends Button
         return hasMine;
     }
 
-    private void showNeighbors()
+    /**
+     *
+     * @return count of opened cells
+     */
+    private int showNeighbors()
     {
         if (!isOpen) {
-            return;
+            return 0;
         }
 
         if (neighborsMineCount > 0) {
             setText(String.valueOf(neighborsMineCount));
         }
 
+        int openedCount = 0;
         setDisabled(true);
         if (neighborsMineCount == 0) {
             for (Cell neighborCell: neighborsCells) {
-                neighborCell.open();
+                openedCount += neighborCell.open();
             }
         }
+
+        return openedCount;
     }
 
     public void setNeighborsCells(List<Cell> neighborsCells)
@@ -81,19 +88,23 @@ public class Cell extends Button
         setStyle("-fx-background-color: red");
     }
 
-    public void open()
+    /**
+     *
+     * @return count of opened cells (+ neighbors that was recursively opened )
+     */
+    public int open()
     {
         if (isOpen || isDefused) {
-            return;
+            return 0;
         }
 
         isOpen = true;
         if (hasMine()) {
             explode();
-            return;
+            return 0;
         }
 
-        showNeighbors();
+        return showNeighbors() + 1;
     }
 
     public int getX()
